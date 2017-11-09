@@ -11,7 +11,7 @@ public class Numbers {
             "nineteen","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety", "hundred",
             "thousand","million","billion","trillion","quadrillion","quintillion"};
     public static void main(String[] args) {
-        System.out.println(words("twenty-one"));
+        System.out.println(words("twenty-nine"));
     }
     public static String say(long n) {
         if (n <= 999){
@@ -501,7 +501,9 @@ public class Numbers {
             for (int j = 0; j < letras.length; j++){
                 if (words[i].equals(letras[j])){
                     index = Arrays.asList(letras).indexOf(words[i].toString());
-
+                    if (index <= 20){
+                        numeros += index;
+                    }
                 }
             }
         }
