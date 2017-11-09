@@ -11,7 +11,7 @@ public class Numbers {
             "nineteen","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety", "hundred",
             "thousand","million","billion","trillion","quadrillion","quintillion"};
     public static void main(String[] args) {
-        System.out.println(words("twenty-nine"));
+        System.out.println(words("Five million four hundred and thirty-two thousand six hundred and fifty-three"));
     }
     public static String say(long n) {
         if (n <= 999){
@@ -494,19 +494,79 @@ public class Numbers {
 
 
     public static long words(String s) {
+        s = s.toLowerCase();
         String[] words = s.split("[-\\s]"); // quita los guiones y los espacios y lo mete en la lista
         long numeros = 0;
         long index = 0;
-        for (int i = 0; i < words.length; i++){
+        long total = 0;
+        for (int i = 0; i < words.length; i++){ //revisa la cadena
             for (int j = 0; j < letras.length; j++){
-                if (words[i].equals(letras[j])){
+                if (words[i].equals(letras[j])){ //especifica qué hacer al encontrar la cadena
                     index = Arrays.asList(letras).indexOf(words[i].toString());
                     if (index <= 20){
                         numeros += index;
+                    } else {
+                        switch ((int)index){
+                            case 21:
+                                numeros += 30;
+                                break;
+                            case 22:
+                                numeros += 40;
+                                break;
+                            case 23:
+                                numeros += 50;
+                                break;
+                            case 24:
+                                numeros += 60;
+                                break;
+                            case 25:
+                                numeros += 70;
+                                break;
+                            case 26:
+                                numeros += 80;
+                                break;
+                            case 27:
+                                numeros += 90;
+                                break;
+                            case 28:
+                                numeros *= 100;
+                                break;
+                            case 29:
+                                numeros *= 1_000;
+                                total += numeros;
+                                numeros = 0;
+                                break;
+                            case 30:
+                                numeros *= 1_000_000;
+                                total += numeros;
+                                numeros = 0;
+                                break;
+                            case 31:
+                                numeros *= 1_000_000_000;
+                                total += numeros;
+                                numeros = 0;
+                                break;
+                            case 32:
+                                numeros *= 1_000_000_000_000L;
+                                total += numeros;
+                                numeros = 0;
+                                break;
+                            case 33:
+                                numeros *= 1_000_000_000_000_000L;
+                                total += numeros;
+                                numeros = 0;
+                                break;
+                            case 34:
+                                numeros *= 1_000_000_000_000_000_000L;
+                                total += numeros;
+                                numeros = 0;
+                                break;
+                        }
                     }
                 }
             }
         }
-        return numeros;
+        total += numeros;
+        return total;
     }
 }
