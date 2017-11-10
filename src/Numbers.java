@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Numbers {
-
+    // definimos todas las listas que utilizaremos más adelante
     static String[] hasta19 = {"One", "Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"};
     static String[] minusculas = {"one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
     static String[] de20hasta90 = {"", "Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"};
@@ -11,9 +11,10 @@ public class Numbers {
             "nineteen","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety", "hundred",
             "thousand","million","billion","trillion","quadrillion","quintillion"};
     public static void main(String[] args) {
-        System.out.println(words("Five million four hundred and thirty-two thousand six hundred and fifty-three"));
+        System.out.println(say(179));
     }
     public static String say(long n) {
+        // Aqui es donde definiremos las condiciones, indicamos que si n es menor que el numero definido, nos devolvera el valor de la funcion
         if (n <= 999){
             return hastaMil((int) n);
         } else if (n <= 999_999){
@@ -32,17 +33,17 @@ public class Numbers {
     }
 
    static String hastaMil(int n) {
-       String vacia = "";
-       if (n == 0){
+       String vacia = "";   // Definimos la string vacia
+       if (n == 0){         // si n es igual a 0 retornará el valor de "Zero"
            return "Zero";
        }
         if (n < 20){
-           vacia += hasta19[n-1];
+           vacia += hasta19[n-1];   // Si n es menor que 20, retornará la String vacia con el valor de la lista, le ponemos un -1 porque no esta la palabra "zero"
        } else if ( n >= 20 && n <= 99){
-           if ( n % 10 == 0){
-               vacia += de20hasta90[n/10-1];
+           if ( n % 10 == 0){   // Esta operacion coge las unidades del numero y mira si es igual a cero
+               vacia += de20hasta90[n/10-1]; // Coge las decenas del numero
            } else {
-               vacia += de20hasta90[n/10-1]+"-"+minusculas[n % 10-1];
+               vacia += de20hasta90[n/10-1]+"-"+minusculas[n % 10-1]; // Coge la lista (con las mayusculas de las decenas) y añade un guion y luego coge las unidades
            }
        } else if (n <= 999){
             if (n % 100 == 0){
@@ -51,7 +52,7 @@ public class Numbers {
                 vacia += hasta19[n / 100 - 1] + " hundred and " + minusculas[n % 100 - 1];
             } else {
                 if (n % 10 == 0){
-                    vacia += hasta19[n/100-1] + " hundred and "+ minusculas2[n % 100-1];
+                    vacia += hasta19[n / 100-1] + " hundred and "+ minusculas2[n % 100-1];
                 } else {
                     vacia += hasta19[n / 100-1]+" hundred and "+minusculas2[n % 100 / 10-1]+"-"+minusculas[n % 10-1];
                 }
@@ -494,7 +495,7 @@ public class Numbers {
 
 
     public static long words(String s) {
-        s = s.toLowerCase();
+        s = s.toLowerCase(); // convierte la String s en minusculas
         String[] words = s.split("[-\\s]"); // quita los guiones y los espacios y lo mete en la lista
         long numeros = 0;
         long index = 0;
@@ -502,13 +503,13 @@ public class Numbers {
         for (int i = 0; i < words.length; i++){ //revisa la cadena
             for (int j = 0; j < letras.length; j++){
                 if (words[i].equals(letras[j])){ //especifica qué hacer al encontrar la cadena
-                    index = Arrays.asList(letras).indexOf(words[i].toString());
-                    if (index <= 20){
+                    index = Arrays.asList(letras).indexOf(words[i].toString()); // encuentra la posición del elemento
+                    if (index <= 20){   // si el indice del elemento es menor que 20, suma numeros al indice
                         numeros += index;
                     } else {
-                        switch ((int)index){
+                        switch ((int)index){    // Este switch sirve para indicar que a partir de la posición 21 de la lista tiene que sumar 30 a numeros, y asi sucesivamente
                             case 21:
-                                numeros += 30;
+                                numeros += 30;  // Mira el valor que está en esa posición y le suma
                                 break;
                             case 22:
                                 numeros += 40;
@@ -532,7 +533,7 @@ public class Numbers {
                                 numeros *= 100;
                                 break;
                             case 29:
-                                numeros *= 1_000;
+                                numeros *= 1_000;   // Numeros lo multiplicas por 1000 y le sumas numeros a total
                                 total += numeros;
                                 numeros = 0;
                                 break;
