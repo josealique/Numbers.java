@@ -507,7 +507,7 @@ public class Numbers {
                     if (index <= 20){   // si el indice del elemento es menor que 20, suma numeros al indice
                         numeros += index;
                     } else {
-                        switch ((int)index){    // Este switch sirve para indicar que a partir de la posición 21 de la lista tiene que sumar 30 a numeros, y asi sucesivamente
+                        switch ((int)index){
                             case 21:
                                 numeros += 30;  // Mira el valor que está en esa posición y le suma
                                 break;
@@ -533,7 +533,7 @@ public class Numbers {
                                 numeros *= 100;
                                 break;
                             case 29:
-                                numeros *= 1_000;   // Numeros lo multiplicas por 1000 y le sumas numeros a total
+                                numeros *= 1_000;   // Numeros lo multiplicas por 1000 y le sumas numeros a total(0), luego se ha de reiniciar numeros
                                 total += numeros;
                                 numeros = 0;
                                 break;
